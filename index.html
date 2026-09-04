@@ -50,12 +50,15 @@
 
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 relative z-10">
         <div>
-          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
-            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+          <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
               <span>🇮🇳 Top MBAs + UG Benchmarks</span>
             </span>
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700/60">
               20-Yr Horizon (Ages 21–41)
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium bg-emerald-950/60 text-emerald-300 border border-emerald-700/50">
+              📈 9.0% Diversified Portfolio Compounding
             </span>
           </div>
 
@@ -64,7 +67,7 @@
           </h1>
           <p class="text-[11px] sm:text-sm text-slate-400 mt-1 max-w-3xl leading-relaxed">
             Compare <strong>Top 20 MBAs</strong>, <strong>Baby IIMs</strong>, and direct undergrad tracks (<strong>SRCC</strong> & <strong>Venky</strong>) 
-            after deducting New Regime tax, 7-year loan EMIs, and opportunity costs.
+            after deducting New Regime tax, 7-year loan EMIs, living costs, and compounding surplus savings at a <strong>9.0% diversified portfolio CAGR</strong>.
           </p>
         </div>
 
@@ -251,7 +254,7 @@
               <th class="py-2.5 sm:py-3 px-3 text-right cursor-pointer hover:text-white whitespace-nowrap" onclick="changeSort('y3_desc')">Yr 3 In-Hand ↕</th>
               <th class="py-2.5 sm:py-3 px-3 text-right cursor-pointer hover:text-white whitespace-nowrap" onclick="changeSort('y10_desc')">Yr 10 In-Hand ↕</th>
               <th class="py-2.5 sm:py-3 px-3 text-right cursor-pointer hover:text-white whitespace-nowrap" onclick="changeSort('y20_desc')">Yr 20 In-Hand ↕</th>
-              <th class="py-2.5 sm:py-3 px-3 text-right cursor-pointer hover:text-white font-bold text-indigo-400 whitespace-nowrap" onclick="changeSort('wealth_desc')">20-Yr Wealth ↕</th>
+              <th class="py-2.5 sm:py-3 px-3 text-right cursor-pointer hover:text-white font-bold text-indigo-400 whitespace-nowrap" onclick="changeSort('wealth_desc')" title="Assumes progressive 35%–60% surplus savings compounded at 9% CAGR in a diversified portfolio (65% Equity, 25% Debt/EPF, 10% Gold)">20-Yr Wealth ↕ <span class="text-[9px] font-medium text-indigo-300 block">@ 9% Portfolio</span></th>
               <th class="py-2.5 sm:py-3 px-3 text-right font-bold text-emerald-400 whitespace-nowrap">ROI Mult.</th>
             </tr>
           </thead>
@@ -301,6 +304,21 @@
         <p class="text-[11px] text-slate-300 leading-relaxed">
           Rather than an artificial runaway CAGR, executive salaries follow a realistic 3-phase S-curve. Corporate VP/Director pay bands compress across top B-schools (₹1.1–₹2.5 Cr), while IIM A/B/C leads 2-year MBA terminal wealth (<strong>₹12.14 Crores</strong>) via high-beta PE/VC/MBB access.
         </p>
+      </div>
+    </div>
+
+    <!-- Portfolio & Investment Methodology Callout -->
+    <div class="mt-3.5 bg-[#111827]/90 border border-indigo-500/30 rounded-2xl p-3.5 sm:p-4 text-slate-400 text-[11px] sm:text-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-start sm:items-center gap-3">
+        <div class="p-2 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 flex-shrink-0 text-lg">📈</div>
+        <div>
+          <div class="font-bold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
+            <span>Diversified Investment Portfolio Compounding (9.0% Blended Net CAGR)</span>
+          </div>
+          <p class="text-slate-300 text-[11px] mt-0.5 leading-relaxed">
+            Cumulative wealth represents continuous compounding of post-tax, post-EMI surplus cash after metro living expenses. The model allocates to a realistic modern Indian portfolio: <strong class="text-indigo-300">65% Equity</strong> (Nifty 50 & Midcap index funds @ ~11.5%), <strong class="text-indigo-300">25% Debt & Retirals</strong> (EPF, PPF, corporate bonds @ ~7.5%), and <strong class="text-indigo-300">10% Liquid/Gold</strong>, yielding a net blended return of <strong class="text-emerald-400">9.0% per annum</strong> (post-LTCG tax). Progressive savings rates scale with seniority (<strong class="text-white">35%</strong> early career &rarr; <strong class="text-white">45%</strong> mid-career &rarr; <strong class="text-white">60%</strong> executive).
+          </p>
+        </div>
       </div>
     </div>
 
