@@ -37,11 +37,11 @@ TRACKS_CONFIG = [
     {"id": "iimt", "name": "IIM Trichy", "short": "IIM-T", "cluster": "Tier 1.5 & New IIMs", "cluster_id": "c5", "color": "#ef4444", "fee": 21.0, "loan": 21.0, "rate": 8.75, "dur": 2, "start_ctc": 19.0, "g1": 0.162, "g2": 0.118, "g3": 0.076},
 
     # Undergrad Direct (No MBA)
-    {"id": "srcc", "name": "SRCC Grad (Decent Placement)", "short": "SRCC", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 12.0, "g1": 0.180, "g2": 0.115, "g3": 0.065},
-    {"id": "venky", "name": "Venky Grad (6L CTC Starting)", "short": "Venky", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#eab308", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 6.0, "g1": 0.155, "g2": 0.095, "g3": 0.060},
+    {"id": "srcc", "name": "SRCC Grad (Pure UG / No MBA)", "short": "SRCC (Pure UG)", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 12.0, "g1": 0.180, "g2": 0.118, "g3": 0.068, "ceiling_role": "Director / Principal (GCC / Tech Ops)", "ceiling_ctc": "₹65L - ₹85L (₹50L-₹65L fixed cash)", "ceiling_notes": "Starts in top capability hubs (BCN/D.E. Shaw); hits ceiling at Director level in GCCs without MBA/CA partner eligibility."},
+    {"id": "venky", "name": "Venky / Deloitte UG (No MBA)", "short": "Deloitte / Venky", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#eab308", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 6.0, "g1": 0.175, "g2": 0.132, "g3": 0.088, "ceiling_role": "Senior Manager / Associate Director", "ceiling_ctc": "₹40L - ₹58L (₹32L-₹45L fixed cash)", "ceiling_notes": "Partner track in Big 4 requires CA/CPA or Tier-1 MBA; transitions to Delivery Lead / Senior PMO managing onshore teams."},
 
     # Baby IIMs (Gen 3 Benchmark)
-    {"id": "iim_amritsar", "name": "IIM Amritsar (Baby IIM)", "short": "IIM Amritsar", "cluster": "Baby IIMs (Tier 2 Benchmark)", "cluster_id": "baby_iim", "color": "#f97316", "fee": 17.5, "loan": 16.0, "rate": 8.75, "dur": 2, "start_ctc": 15.5, "g1": 0.142, "g2": 0.102, "g3": 0.070}
+    {"id": "iim_amritsar", "name": "IIM Amritsar (Baby IIM MBA)", "short": "IIM Amritsar", "cluster": "Baby IIMs (Tier 2 Benchmark)", "cluster_id": "baby_iim", "color": "#f97316", "fee": 17.5, "loan": 16.0, "rate": 8.75, "dur": 2, "start_ctc": 15.5, "g1": 0.155, "g2": 0.115, "g3": 0.080, "ceiling_role": "Director / VP / Business Unit Head", "ceiling_ctc": "₹80L - ₹1.10 Cr (₹65L-₹85L fixed cash)", "ceiling_notes": "Lags SRCC in early years due to ₹17.5L debt; unconstrained by undergrad ceiling in later years to reach corporate Director/VP."}
 ]
 
 def calc_new_regime_tax(income_lakhs):
@@ -162,13 +162,23 @@ def simulate_track(cfg):
         "total_wealth_20yr": cum_wealth[19],
         "y3_in_hand_mo": monthly_in_hand[2],
         "y10_in_hand_mo": monthly_in_hand[9],
-        "y20_in_hand_mo": monthly_in_hand[19]
+        "y20_in_hand_mo": monthly_in_hand[19],
+        "ceiling_role": cfg.get("ceiling_role", ""),
+        "ceiling_ctc": cfg.get("ceiling_ctc", ""),
+        "ceiling_notes": cfg.get("ceiling_notes", "")
     }
 
 results = [simulate_track(c) for c in TRACKS_CONFIG]
 
 if __name__ == "__main__":
+    import os
+    dataset_path = os.path.join(os.path.dirname(__file__), "..", "data", "career_tracks_dataset.json")
+    with open(dataset_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2)
+    print(f"Saved {len(results)} calibrated tracks to {dataset_path}")
+
     print(f"{'College':<15} | {'Fee':<5} | {'Y3 In-Hand':<10} | {'Y10 In-Hand':<11} | {'Y20 In-Hand':<11} | {'Y20 Gross':<10} | {'20Y Wealth':<10}")
     print("-" * 88)
     for r in results:
         print(f"{r['short']:<15} | {r['fee']:<5.1f} | ₹{r['y3_in_hand_mo']:<8.2f}L | ₹{r['y10_in_hand_mo']:<9.2f}L | ₹{r['y20_in_hand_mo']:<9.2f}L | ₹{r['gross_ctc'][19]:<8.1f}L | ₹{r['total_wealth_20yr']:<6.2f} Cr")
+
