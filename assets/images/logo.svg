@@ -4,10 +4,10 @@
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f172a" />
       <stop offset="50%" stop-color="#0b101b" />
-      <stop offset="100%" stop-color="#030712" />
+      <stop offset="100%" stop-color="#020617" />
     </linearGradient>
     
-    <!-- Luminous Upward Trajectory Gradient (Emerald -> Cyan -> Indigo -> Violet) -->
+    <!-- Luminous Upward Trajectory Gradient -->
     <linearGradient id="curveGrad" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#10b981" />
       <stop offset="35%" stop-color="#06b6d4" />
@@ -15,51 +15,51 @@
       <stop offset="100%" stop-color="#a855f7" />
     </linearGradient>
 
-    <!-- Beacon Radial Gradient -->
+    <!-- Radial Beacon Glow -->
     <radialGradient id="beaconGlow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#38bdf8" stop-opacity="1" />
-      <stop offset="35%" stop-color="#6366f1" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#6366f1" stop-opacity="0.8" />
       <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Blur & Glow Filters -->
+    <!-- Glow Filter -->
     <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="16" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
 
-    <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="softAmbient" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="40" />
     </filter>
   </defs>
 
-  <!-- Squircle Base with Border -->
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="6" />
+  <!-- Full Background (Seamless for Shortcut Icons) -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="6" />
   
-  <!-- Subtle Ambient Wealth Glow -->
-  <circle cx="380" cy="140" r="160" fill="url(#beaconGlow)" opacity="0.35" filter="url(#ambientGlow)" />
+  <!-- Ambient Luminous Wealth Field -->
+  <circle cx="375" cy="145" r="160" fill="url(#beaconGlow)" opacity="0.35" filter="url(#softAmbient)" />
 
-  <!-- Minimalist Upward Growth Milestone Pillars -->
-  <rect x="130" y="340" width="22" height="50" rx="6" fill="#10b981" opacity="0.35" />
-  <rect x="180" y="310" width="22" height="80" rx="6" fill="#06b6d4" opacity="0.4" />
-  <rect x="230" y="270" width="22" height="120" rx="6" fill="#38bdf8" opacity="0.45" />
-  <rect x="280" y="210" width="22" height="180" rx="6" fill="#6366f1" opacity="0.5" />
-  <rect x="330" y="140" width="22" height="250" rx="6" fill="#8b5cf6" opacity="0.55" />
+  <!-- Minimalist Compounding Milestone Pillars -->
+  <rect x="135" y="335" width="22" height="55" rx="6" fill="#10b981" opacity="0.4" />
+  <rect x="185" y="305" width="22" height="85" rx="6" fill="#06b6d4" opacity="0.45" />
+  <rect x="235" y="265" width="22" height="125" rx="6" fill="#38bdf8" opacity="0.5" />
+  <rect x="285" y="205" width="22" height="185" rx="6" fill="#6366f1" opacity="0.55" />
+  <rect x="335" y="135" width="22" height="255" rx="6" fill="#8b5cf6" opacity="0.6" />
 
-  <!-- Upward Compounding Trajectory S-Curve (Underglow) -->
-  <path d="M 105 385 C 200 380, 240 310, 280 230 C 320 150, 350 125, 385 125" 
+  <!-- Exponential Trajectory S-Curve (Atmospheric Glow) -->
+  <path d="M 110 380 C 195 375, 240 310, 275 235 C 315 150, 345 130, 380 130" 
         fill="none" stroke="url(#curveGrad)" stroke-width="32" stroke-linecap="round" opacity="0.4" filter="url(#glow)" />
   
-  <!-- Upward Compounding Trajectory S-Curve (Crisp Core) -->
-  <path d="M 105 385 C 200 380, 240 310, 280 230 C 320 150, 350 125, 385 125" 
+  <!-- Exponential Trajectory S-Curve (Crisp Luminous Core) -->
+  <path d="M 110 380 C 195 375, 240 310, 275 235 C 315 150, 345 130, 380 130" 
         fill="none" stroke="url(#curveGrad)" stroke-width="18" stroke-linecap="round" />
 
-  <!-- Apex Star / Beacon Node -->
-  <circle cx="385" cy="125" r="32" fill="#38bdf8" opacity="0.25" filter="url(#glow)" />
-  <circle cx="385" cy="125" r="18" fill="#ffffff" />
-  <circle cx="385" cy="125" r="11" fill="#38bdf8" />
-  <circle cx="385" cy="125" r="5" fill="#0b101b" />
+  <!-- Apex Beacon Node -->
+  <circle cx="380" cy="130" r="30" fill="#38bdf8" opacity="0.25" filter="url(#glow)" />
+  <circle cx="380" cy="130" r="17" fill="#ffffff" />
+  <circle cx="380" cy="130" r="10" fill="#38bdf8" />
+  <circle cx="380" cy="130" r="4.5" fill="#0b101b" />
 
-  <!-- Minimalist Terminal Arrow Accent -->
-  <path d="M 390 92 L 420 122 L 390 152" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Minimalist Arrow Accent -->
+  <path d="M 385 96 L 415 126 L 385 156" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

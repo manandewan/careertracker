@@ -1,27 +1,28 @@
-// CareerTracker Service Worker for PWA Shortcut & Offline Caching
-const CACHE_NAME = 'careertracker-v2';
+// CareerTracker Service Worker for PWA Shortcut & Offline Caching (v4)
+const CACHE_NAME = 'careertracker-v4';
 const STATIC_ASSETS = [
   './',
   './index.html',
-  './manifest.json',
-  './favicon.ico',
-  './apple-touch-icon.png',
-  './assets/images/logo.svg',
-  './assets/images/apple-touch-icon.png',
-  './assets/images/icon-192.png',
-  './assets/images/icon-512.png',
-  './assets/images/icon-maskable-192.png',
-  './assets/images/icon-maskable-512.png',
-  './assets/images/favicon-32.png',
-  './assets/images/favicon-16.png',
-  './assets/images/favicon.png'
+  './manifest.json?v=4',
+  './favicon.ico?v=4',
+  './apple-touch-icon.png?v=4',
+  './apple-touch-icon-precomposed.png?v=4',
+  './icon-192.png?v=4',
+  './icon-512.png?v=4',
+  './assets/images/logo.svg?v=4',
+  './assets/images/apple-touch-icon.png?v=4',
+  './assets/images/icon-maskable-192.png?v=4',
+  './assets/images/icon-maskable-512.png?v=4',
+  './assets/images/favicon-32.png?v=4',
+  './assets/images/favicon-16.png?v=4',
+  './assets/images/favicon.png?v=4'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn('Service worker asset caching notice:', err);
+        console.warn('SW cache.addAll notice:', err);
       });
     })
   );
@@ -44,7 +45,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Stale-while-revalidate for local assets, network first for others
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
