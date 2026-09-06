@@ -1,8 +1,21 @@
-# 🎓 CareerTracker: India Top MBA & Undergrad 20-Year Compensation Simulator
+<div align="center">
+  <a href="https://manandewan.github.io/careertracker/" target="_blank">
+    <img src="assets/images/logo.svg" alt="CareerTracker Logo" width="96" height="96" />
+  </a>
+  <h1>CareerTracker</h1>
+  <p><strong>India Top MBA & Undergrad 20-Year Compensation & Wealth Simulator</strong></p>
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Dashboard-blue?style=for-the-badge&logo=github)](https://manandewan.github.io/careertracker/)
-[![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python)](https://python.org)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3.4-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
+  <p>
+    <a href="https://manandewan.github.io/careertracker/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?style=for-the-badge&logo=github" alt="Live Demo" /></a>
+    <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python" alt="Python" /></a>
+    <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/TailwindCSS-v3.4-06B6D4?style=for-the-badge&logo=tailwindcss" alt="TailwindCSS" /></a>
+    <a href="https://github.com/manandewan/careertracker"><img src="https://img.shields.io/github/stars/manandewan/careertracker?style=for-the-badge&color=amber" alt="Stars" /></a>
+  </p>
+
+  <p>
+    <a href="https://manandewan.github.io/careertracker/"><strong>🚀 Launch Live Web Simulator »</strong></a>
+  </p>
+</div>
 
 An interactive financial simulator and career trajectory comparator modeling **India's Top 20 MBA colleges**, **Baby IIMs (IIM Amritsar)**, and direct undergraduate corporate tracks (**SRCC** and **Venky Grad**) across a **20-year career horizon** (Ages 21 to 41, from graduation to C-Suite / Managing Partner).
 
@@ -31,8 +44,12 @@ The interactive web dashboard is 100% self-contained in `index.html` and ready f
   - `IIM Spectrum` (Tier 1 Elite vs New IIMs vs Baby IIMs)
   - `Zero-Debt & High ROI` (FMS, JBIMS, TISS, SRCC)
 - **Live SVG Chart**: Dynamic auto-scaling Y-axis, phase background bands, synchronized hover crosshair, and tooltips.
-- **4 Metric Modes**: Annual Net Take-Home, Monthly In-Hand, Cumulative Wealth (₹ Cr), and Gross CTC.
-- **Interactive Matrix Table**: Sortable by Program Fee, Monthly Loan EMI, Starting Take-Home, Debt-Free Salary, 20-Yr Wealth, and ROI Multiple.
+### 📱 Install as a Shortcut / Web App
+CareerTracker is fully PWA-enabled with adaptive minimalist brand icons:
+- **iOS Safari**: Tap **Share** (`􀈂`) → **Add to Home Screen**. The minimalist obsidian-and-cyan logo shows up directly on your Home Screen.
+- **Android Chrome**: Tap **⋮** → **Install App** or **Add to Home screen**. Features full Android Adaptive Icon support (`maskable` safe zone).
+- **Desktop Chrome / Edge / Brave**: Click **Install CareerTracker** in the URL address bar or **Save and share** → **Create Shortcut**.
+- **macOS Safari**: Choose **File** → **Add to Dock**.
 
 ---
 

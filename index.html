@@ -7,15 +7,30 @@
   <title>CareerTracker: India Top MBA & Undergrad 20-Year Compensation Simulator</title>
 
   <!-- Website Icon, Favicon & PWA Shortcut Assets -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/images/favicon-48.png">
+
+  <!-- Apple Touch Icons (iOS Home Screen Shortcut & macOS Dock) -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="assets/images/apple-touch-icon-167.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+  <!-- Web App Manifest & Shortcut Installation -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0b101b">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CareerTracker">
+  <meta name="application-name" content="CareerTracker">
+  <meta name="theme-color" content="#0b101b">
+  <meta name="msapplication-TileColor" content="#0b101b">
+  <meta name="msapplication-TileImage" content="assets/images/icon-192.png">
 
   <!-- Open Graph & Social Preview Meta Tags (GitHub link preview) -->
   <meta property="og:type" content="website">
@@ -954,6 +969,15 @@
         item.onmouseenter = () => highlightCollege(c.id);
         item.onmouseleave = () => unhighlightCollege();
         chipsRow.appendChild(item);
+      });
+    }
+
+    // Register Service Worker for PWA Shortcut & Caching
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration note:', err);
+        });
       });
     }
 
