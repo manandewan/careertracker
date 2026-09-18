@@ -45,19 +45,51 @@ TRACKS_CONFIG = [
 ]
 
 def calc_new_regime_tax(income_lakhs):
+    # Standard deduction for salaried individuals is ₹75,000 (0.75 Lakhs)
     taxable = max(0.0, income_lakhs - 0.75)
-    if taxable <= 7.0:
+    
+    # Section 87A Rebate:
+    # Full rebate up to ₹60,000 for taxable income up to ₹12.00 Lakhs (Gross Cash up to ₹12.75L is 100% TAX FREE)
+    if taxable <= 12.0:
         return 0.0
+    
+    # Slabs under New Regime (FY 2025-26 onwards):
+    # 0 to 4L: 0%
+    # 4L to 8L (4L): 5% -> ₹20,000 (0.20L)
+    # 8L to 12L (4L): 10% -> ₹40,000 (0.40L)
+    # 12L to 16L (4L): 15%
+    # 16L to 20L (4L): 20%
+    # 20L to 24L (4L): 25%
+    # > 24L: 30%
     tax = 0.0
-    tax += min(max(0.0, taxable - 3.0), 4.0) * 0.05
-    if taxable > 7.0: tax += min(taxable - 7.0, 3.0) * 0.10
-    if taxable > 10.0: tax += min(taxable - 10.0, 2.0) * 0.15
-    if taxable > 12.0: tax += min(taxable - 12.0, 3.0) * 0.20
-    if taxable > 15.0: tax += (taxable - 15.0) * 0.30
+    tax += min(max(0.0, taxable - 4.0), 4.0) * 0.05
+    if taxable > 8.0:
+        tax += min(taxable - 8.0, 4.0) * 0.10
+    if taxable > 12.0:
+        tax += min(taxable - 12.0, 4.0) * 0.15
+    if taxable > 16.0:
+        tax += min(taxable - 16.0, 4.0) * 0.20
+    if taxable > 20.0:
+        tax += min(taxable - 20.0, 4.0) * 0.25
+    if taxable > 24.0:
+        tax += (taxable - 24.0) * 0.30
+        
+    # Marginal Relief for incomes marginally exceeding ₹12.0 Lakhs:
+    # Tax payable cannot exceed the amount of income exceeding ₹12.0 Lakhs
+    excess_income = taxable - 12.0
+    if tax > excess_income:
+        tax = excess_income
+        
+    # Surcharge on High Income under Section 115BAC (capped at 25%):
     surcharge = 0.0
-    if taxable > 200.0: surcharge = tax * 0.25
-    elif taxable > 100.0: surcharge = tax * 0.15
-    elif taxable > 50.0: surcharge = tax * 0.10
+    if taxable > 200.0:
+        surcharge = tax * 0.25
+    elif taxable > 100.0:
+        surcharge = tax * 0.15
+    elif taxable > 50.0:
+        surcharge = tax * 0.10
+        
+    # Health & Education Cess: 4% on (Tax + Surcharge)
     return (tax + surcharge) * 1.04
 
 def compute_emi(loan_lakhs, rate_pct, tenure_years=7):
