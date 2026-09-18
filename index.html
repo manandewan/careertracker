@@ -210,13 +210,10 @@
           </h2>
         </div>
 
-        <!-- Quick Presets -->
-        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <button onclick="setDiscountRate(0.0)" id="pv-btn-0" class="pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition" data-rate="0.0">0.0% Nominal</button>
-          <button onclick="setDiscountRate(5.5)" id="pv-btn-55" class="pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition" data-rate="5.5">5.5% RBI CPI</button>
-          <button onclick="setDiscountRate(6.0)" id="pv-btn-6" class="pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-bold border border-cyan-500/60 text-cyan-300 bg-cyan-950/60 transition shadow" data-rate="6.0">6.0% Inflation (Default)</button>
-          <button onclick="setDiscountRate(8.5)" id="pv-btn-85" class="pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition" data-rate="8.5">8.5% Loan Hurdle</button>
-          <button onclick="setDiscountRate(10.0)" id="pv-btn-10" class="pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition" data-rate="10.0">10.0% Equity Hurdle</button>
+        <!-- Quick Presets (Only 0% Nominal & 6% Inflation) -->
+        <div class="flex items-center gap-2">
+          <button onclick="setDiscountRate(0.0)" id="pv-btn-0" class="pv-preset-btn px-3 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition" data-rate="0.0">0.0% Nominal</button>
+          <button onclick="setDiscountRate(6.0)" id="pv-btn-6" class="pv-preset-btn px-3 py-1 rounded-lg text-xs font-bold border border-cyan-500/60 text-cyan-300 bg-cyan-950/60 transition shadow" data-rate="6.0">6.0% Inflation (Default)</button>
         </div>
       </div>
 
@@ -235,10 +232,10 @@
         <input type="range" id="pvSlider" min="0.0" max="15.0" step="0.25" value="6.0" oninput="onDiscountSliderChange(this.value)" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
         <div class="flex justify-between text-[10px] text-slate-500 font-mono">
           <span>0.0% (Nominal)</span>
-          <span>5.0%</span>
-          <span>6.0% (Default Inflation)</span>
-          <span>8.5% (Cost of Debt)</span>
-          <span>10.0% (Equity Cost)</span>
+          <span>3.0%</span>
+          <span>6.0% (Inflation Default)</span>
+          <span>9.0%</span>
+          <span>12.0%</span>
           <span>15.0%</span>
         </div>
       </div>
@@ -611,12 +608,8 @@
       if (descDisp) {
         if (discountRate === 0.0) {
           descDisp.innerText = '(Nominal / Face Value Mode - No Discounting)';
-        } else if (discountRate <= 6.5) {
-          descDisp.innerText = '(Real Purchasing Power Mode - Inflation-Adjusted)';
-        } else if (discountRate <= 9.0) {
-          descDisp.innerText = '(Cost of Debt / Loan Hurdle Mode)';
         } else {
-          descDisp.innerText = '(Aggressive Equity Hurdle Mode)';
+          descDisp.innerText = '(Real Purchasing Power Mode - Inflation-Adjusted)';
         }
       }
 
@@ -624,9 +617,9 @@
       document.querySelectorAll('.pv-preset-btn').forEach(btn => {
         const r = parseFloat(btn.getAttribute('data-rate'));
         if (Math.abs(r - discountRate) < 0.1) {
-          btn.className = 'pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-bold border border-cyan-500/60 text-cyan-300 bg-cyan-950/60 transition shadow';
+          btn.className = 'pv-preset-btn px-3 py-1 rounded-lg text-xs font-bold border border-cyan-500/60 text-cyan-300 bg-cyan-950/60 transition shadow';
         } else {
-          btn.className = 'pv-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition';
+          btn.className = 'pv-preset-btn px-3 py-1 rounded-lg text-xs font-medium border border-slate-700 text-slate-300 hover:border-slate-500 transition';
         }
       });
 
