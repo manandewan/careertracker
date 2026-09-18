@@ -265,6 +265,89 @@
       </div>
     </div>
 
+    <!-- Main Model Pillars (Quick Reference) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+      <!-- Card 1: Starting Points (Medians) -->
+      <div class="bg-[#111827] border border-purple-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="w-1.5 h-full bg-purple-500 absolute left-0 top-0"></div>
+        <div>
+          <div class="text-[10px] font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
+            <span>🎯 Starting Points</span>
+          </div>
+          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
+            Campus Median CTC
+          </div>
+          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
+            Audited campus median CTC for all MBA colleges (e.g. ₹34.5L IIM-A, ₹32L FMS, ₹15.5L Baby IIMs) and official SRCC placement benchmarks.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: 7 Year EMIs for MBA -->
+      <div class="bg-[#111827] border border-amber-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="w-1.5 h-full bg-amber-500 absolute left-0 top-0"></div>
+        <div>
+          <div class="text-[10px] font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
+            <span>💳 MBA Debt Service</span>
+          </div>
+          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
+            7-Year Loan EMIs
+          </div>
+          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
+            84 monthly EMIs deducted across Years 3–9 at 8.5%–9.0% interest (₹47.5k/mo IIM-A, ₹25.5k/mo Amritsar, ₹0 FMS &amp; Direct UG).
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: PV Discounted -->
+      <div class="bg-[#111827] border border-cyan-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="w-1.5 h-full bg-cyan-500 absolute left-0 top-0"></div>
+        <div>
+          <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
+            <span>⏱️ Today's Purchasing Power</span>
+          </div>
+          <div id="pillar-pv-headline" class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
+            6.0% Inflation PV
+          </div>
+          <p id="pillar-pv-desc" class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
+            All future salaries and net wealth discounted back to Day 1 purchasing power, showing actual real-terms value in today’s rupees.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: How much is saved -->
+      <div class="bg-[#111827] border border-emerald-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="w-1.5 h-full bg-emerald-500 absolute left-0 top-0"></div>
+        <div>
+          <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
+            <span>💰 Cash Saved</span>
+          </div>
+          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
+            35% &rarr; 45% &rarr; 60%
+          </div>
+          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
+            Progressive savings rate of net in-hand cash after rent, taxes &amp; living costs: 35% (&lt;₹30L CTC), 45% (₹30–75L), 60% (&gt;₹75L).
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5: Portfolio Investing -->
+      <div class="bg-[#111827] border border-indigo-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="w-1.5 h-full bg-indigo-500 absolute left-0 top-0"></div>
+        <div>
+          <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
+            <span>📈 Wealth Compounding</span>
+          </div>
+          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
+            9.0% Net Portfolio
+          </div>
+          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
+            Annual surplus invested in 65% Equity Index (11.5%), 25% Debt/EPF (7.5%), 10% Gold for a post-tax net blended CAGR.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Main Chart Section -->
     <div class="bg-[#131b2e] border border-slate-800/80 rounded-2xl p-3 sm:p-6 shadow-xl">
       <div class="flex flex-col gap-2.5 pb-3 mb-2 border-b border-slate-800/80">
@@ -379,89 +462,6 @@
           <tbody id="comparison-table-body" class="divide-y divide-slate-800/50 text-slate-200 font-medium">
           </tbody>
         </table>
-      </div>
-    </div>
-
-    <!-- Main Model Pillars (Quick Reference) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
-      <!-- Card 1: Starting Points (Medians) -->
-      <div class="bg-[#111827] border border-purple-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
-        <div class="w-1.5 h-full bg-purple-500 absolute left-0 top-0"></div>
-        <div>
-          <div class="text-[10px] font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
-            <span>🎯 Starting Points</span>
-          </div>
-          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
-            Campus Median CTC
-          </div>
-          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
-            Audited campus median CTC for all MBA colleges (e.g. ₹34.5L IIM-A, ₹32L FMS, ₹15.5L Baby IIMs) and official SRCC placement benchmarks.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2: 7 Year EMIs for MBA -->
-      <div class="bg-[#111827] border border-amber-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
-        <div class="w-1.5 h-full bg-amber-500 absolute left-0 top-0"></div>
-        <div>
-          <div class="text-[10px] font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
-            <span>💳 MBA Debt Service</span>
-          </div>
-          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
-            7-Year Loan EMIs
-          </div>
-          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
-            84 monthly EMIs deducted across Years 3–9 at 8.5%–9.0% interest (₹47.5k/mo IIM-A, ₹25.5k/mo Amritsar, ₹0 FMS &amp; Direct UG).
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3: PV Discounted -->
-      <div class="bg-[#111827] border border-cyan-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
-        <div class="w-1.5 h-full bg-cyan-500 absolute left-0 top-0"></div>
-        <div>
-          <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
-            <span>⏱️ Today's Purchasing Power</span>
-          </div>
-          <div id="pillar-pv-headline" class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
-            6.0% Inflation PV
-          </div>
-          <p id="pillar-pv-desc" class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
-            All future salaries and net wealth discounted back to Day 1 purchasing power, showing actual real-terms value in today’s rupees.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 4: How much is saved -->
-      <div class="bg-[#111827] border border-emerald-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
-        <div class="w-1.5 h-full bg-emerald-500 absolute left-0 top-0"></div>
-        <div>
-          <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
-            <span>💰 Cash Saved</span>
-          </div>
-          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
-            35% &rarr; 45% &rarr; 60%
-          </div>
-          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
-            Progressive savings rate of net in-hand cash after rent, taxes &amp; living costs: 35% (&lt;₹30L CTC), 45% (₹30–75L), 60% (&gt;₹75L).
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 5: Portfolio Investing -->
-      <div class="bg-[#111827] border border-indigo-500/35 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
-        <div class="w-1.5 h-full bg-indigo-500 absolute left-0 top-0"></div>
-        <div>
-          <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-1 mb-1.5">
-            <span>📈 Wealth Compounding</span>
-          </div>
-          <div class="text-base sm:text-lg font-black text-white tracking-tight leading-snug">
-            9.0% Net Portfolio
-          </div>
-          <p class="text-xs text-slate-300 font-medium leading-relaxed mt-2">
-            Annual surplus invested in 65% Equity Index (11.5%), 25% Debt/EPF (7.5%), 10% Gold for a post-tax net blended CAGR.
-          </p>
-        </div>
       </div>
     </div>
 
