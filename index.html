@@ -305,11 +305,16 @@
       <!-- Chart Container & Tooltip -->
       <div class="relative w-full overflow-hidden touch-pan-y" id="chart-wrapper">
         <svg id="chart-svg" viewBox="0 0 1000 480" class="w-full h-auto select-none overflow-visible cursor-crosshair">
-          <g id="chart-bands"></g>
-          <g id="chart-phase-labels"></g>
+          <defs>
+            <clipPath id="chart-plot-clip">
+              <rect x="70" y="0" width="885" height="480"/>
+            </clipPath>
+          </defs>
+          <g id="chart-bands" clip-path="url(#chart-plot-clip)"></g>
+          <g id="chart-phase-labels" clip-path="url(#chart-plot-clip)"></g>
           <g id="chart-grid"></g>
           <g id="chart-axes"></g>
-          <g id="chart-lines"></g>
+          <g id="chart-lines" clip-path="url(#chart-plot-clip)"></g>
           <g id="chart-dots"></g>
           <line id="crosshair-line" x1="0" y1="35" x2="0" y2="425" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3" opacity="0" pointer-events="none"></line>
         </svg>
@@ -937,32 +942,91 @@
       const getX = (yearIdx) => padLeft + (yearIdx / (numYears - 1)) * chartW;
       const getY = (val) => padTop + chartH - (val / maxVal) * chartH;
 
+      // Phase Bands & Clean Adaptive Indicator Badges (strictly bounds-checked)
       if (numYears >= 2) {
         const xY2 = getX(1);
-        bandsG.innerHTML += `<rect x="${padLeft}" y="${padTop}" width="${xY2 - padLeft}" height="${chartH}" fill="#334155" fill-opacity="0.14"/>`;
+        const bandW = xY2 - padLeft;
+        bandsG.innerHTML += `<rect x="${padLeft}" y="${padTop}" width="${bandW}" height="${chartH}" fill="#334155" fill-opacity="0.14"/>`;
+        
+        let labelText = "STUDY (Y1-Y2)";
+        let fontSize = "11";
+        if (bandW < 65) {
+          labelText = "STUDY";
+          fontSize = "9";
+        } else if (bandW < 120) {
+          labelText = "STUDY (Y1-2)";
+          fontSize = "10";
+        }
+
+        const pillMargin = 3;
+        const pillX = padLeft + pillMargin;
+        const pillW = Math.max(20, bandW - (pillMargin * 2));
+        const textX = padLeft + bandW / 2;
+
         labelsG.innerHTML += `
-          <rect x="${padLeft + 4}" y="${padTop + 4}" width="${Math.max(60, (xY2 - padLeft) - 8)}" height="20" rx="4" fill="#1e293b" fill-opacity="0.9" stroke="#475569" stroke-width="0.8"/>
-          <text x="${padLeft + (xY2 - padLeft)/2}" y="${padTop + 18}" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle">STUDY (Y1-Y2)</text>
+          <g class="cursor-pointer">
+            <title>MBA Study Phase (Years 1–2): Pre-placement academic period</title>
+            <rect x="${pillX}" y="${padTop + 4}" width="${pillW}" height="20" rx="4" fill="#1e293b" fill-opacity="0.92" stroke="#475569" stroke-width="0.8"/>
+            <text x="${textX}" y="${padTop + 14}" fill="#94a3b8" font-size="${fontSize}" font-weight="700" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, sans-serif">${labelText}</text>
+          </g>
         `;
       }
+
       if (numYears >= 3) {
         const xY3 = getX(1);
         const endLoanIdx = Math.min(8, numYears - 1);
         const xYEndLoan = getX(endLoanIdx);
-        bandsG.innerHTML += `<rect x="${xY3}" y="${padTop}" width="${xYEndLoan - xY3}" height="${chartH}" fill="#d97706" fill-opacity="0.07"/>`;
+        const loanBandW = xYEndLoan - xY3;
+        bandsG.innerHTML += `<rect x="${xY3}" y="${padTop}" width="${loanBandW}" height="${chartH}" fill="#d97706" fill-opacity="0.07"/>`;
         
+        let loanText = numYears <= 5 ? "LOAN EMIs (Y3-Y5)" : "7-YEAR LOAN EMIs (Y3-Y9)";
+        let loanFontSize = "11";
+        if (loanBandW < 160) {
+          loanText = numYears <= 5 ? "LOAN (Y3-5)" : "LOAN EMIs (Y3-9)";
+          loanFontSize = "9.5";
+        }
+
+        const pillMargin = 4;
+        const pillX = xY3 + pillMargin;
+        const pillW = Math.max(30, loanBandW - (pillMargin * 2));
+        const textX = xY3 + loanBandW / 2;
+
         labelsG.innerHTML += `
-          <rect x="${xY3 + 8}" y="${padTop + 4}" width="${Math.max(120, (xYEndLoan - xY3) - 16)}" height="20" rx="4" fill="#0f172a" fill-opacity="0.92" stroke="#d97706" stroke-width="0.8"/>
-          <text x="${xY3 + (xYEndLoan - xY3)/2}" y="${padTop + 18}" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">7-YEAR LOAN EMIs (Y3-Y9)</text>
+          <g class="cursor-pointer">
+            <title>Education Loan Repayment Phase: Debt serviced over 7 years at 8.5%–9.0% ROI</title>
+            <rect x="${pillX}" y="${padTop + 4}" width="${pillW}" height="20" rx="4" fill="#0f172a" fill-opacity="0.92" stroke="#d97706" stroke-width="0.8"/>
+            <text x="${textX}" y="${padTop + 14}" fill="#fbbf24" font-size="${loanFontSize}" font-weight="700" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, sans-serif">${loanText}</text>
+          </g>
         `;
       }
+
       if (numYears >= 10) {
         const xY10 = getX(8);
         const xYEnd = getX(numYears - 1);
-        bandsG.innerHTML += `<rect x="${xY10}" y="${padTop}" width="${xYEnd - xY10}" height="${chartH}" fill="#059669" fill-opacity="0.08"/>`;
+        const dfBandW = xYEnd - xY10;
+        bandsG.innerHTML += `<rect x="${xY10}" y="${padTop}" width="${dfBandW}" height="${chartH}" fill="#059669" fill-opacity="0.08"/>`;
+
+        let dfText = "100% DEBT-FREE COMPOUNDING (Y10-Y20)";
+        let dfFontSize = "11";
+        if (numYears === 10 || dfBandW < 140) {
+          dfText = "DEBT-FREE (Y10)";
+          dfFontSize = "9.5";
+        } else if (dfBandW < 280) {
+          dfText = "DEBT-FREE COMPOUNDING (Y10-Y20)";
+          dfFontSize = "10";
+        }
+
+        const pillMargin = 4;
+        const pillX = xY10 + pillMargin;
+        const pillW = Math.max(30, dfBandW - (pillMargin * 2));
+        const textX = xY10 + dfBandW / 2;
+
         labelsG.innerHTML += `
-          <rect x="${xY10 + 8}" y="${padTop + 4}" width="${Math.max(160, (xYEnd - xY10) - 16)}" height="20" rx="4" fill="#064e3b" fill-opacity="0.92" stroke="#059669" stroke-width="0.8"/>
-          <text x="${xY10 + (xYEnd - xY10)/2}" y="${padTop + 18}" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">100% DEBT-FREE COMPOUNDING (Y10-Y20)</text>
+          <g class="cursor-pointer">
+            <title>100% Debt-Free Wealth Compounding Phase: Zero EMI outflows</title>
+            <rect x="${pillX}" y="${padTop + 4}" width="${pillW}" height="20" rx="4" fill="#064e3b" fill-opacity="0.92" stroke="#059669" stroke-width="0.8"/>
+            <text x="${textX}" y="${padTop + 14}" fill="#34d399" font-size="${dfFontSize}" font-weight="700" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, sans-serif">${dfText}</text>
+          </g>
         `;
       }
 
