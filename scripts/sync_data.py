@@ -29,7 +29,7 @@ new_srcc_card = """<div class="bg-[#131b2e] border border-purple-500/25 rounded-
           <span>🎓 SRCC Decent Placement Paradox</span>
         </h3>
         <p class="text-[11px] text-slate-300 leading-relaxed">
-          Under the New Tax Regime (Sec 87A), taxable income up to ₹12.0L incurs <strong>₹0 tax</strong>. With ₹9.90L cash (₹9.0L fixed + ₹90k bonus), an SRCC decent placement pays <strong>ZERO tax</strong> in Year 1, taking home the full <strong>₹82,500/month</strong>! Under organic promotions at the same firm (Path B), zero-debt cash reaches <strong>₹1.16L/mo</strong> in Year 3 and compounds to <strong>₹5.92 Crores</strong> over 20 years (beating Baby IIMs by +₹1.34 Cr).
+          <span id="card-srcc-desc">Under the New Tax Regime (Sec 87A), taxable income up to ₹12.0L incurs <strong>₹0 tax</strong>. With ₹9.90L cash, an SRCC decent placement pays <strong>ZERO tax</strong> in Year 1 (<strong>₹0.78L/mo in PV</strong>). Zero-debt cash reaches <strong>₹0.97L/mo in PV</strong> in Year 3 and compounds to <strong>₹1.85 Crores Real Wealth</strong> over 20 years (beating Baby IIMs by +₹0.42 Cr in PV).</span>
         </p>
       </div>\n\n      """
 
@@ -48,7 +48,7 @@ new_baby_card = """<div class="bg-[#131b2e] border border-orange-500/25 rounded-
           <span>👶 Baby IIM Squeeze vs. Top UG</span>
         </h3>
         <p class="text-[11px] text-slate-300 leading-relaxed">
-          With a ₹17.5L fee and ₹25.5k/mo EMI, an IIM Amritsar grad takes home <strong>₹82k/month</strong> in Year 3 (lagging SRCC's ₹1.16L/mo). Over 20 years, their ₹4.58 Cr wealth trails SRCC's ₹5.92 Cr by <strong>₹1.34 Crores</strong> because early zero-debt cash compounding creates an insurmountable surplus lead.
+          <span id="card-amr-desc">With a ₹17.5L fee and ₹25.5k/mo EMI, an IIM Amritsar grad takes home <strong>₹0.69L/month in PV</strong> in Year 3 (lagging SRCC's ₹0.97L/mo). Over 20 years, their ₹1.43 Cr real wealth trails SRCC by <strong>₹0.42 Crores in PV</strong> because early zero-debt cash compounding creates an insurmountable surplus lead.</span>
         </p>
       </div>\n\n      """
 
@@ -77,5 +77,5 @@ readme = readme.replace('₹2.11 Crores', '₹1.34 Crores')
 readme = readme.replace('₹2.11 Cr', '₹1.34 Cr')
 
 with open(README_PATH, "w", encoding="utf-8") as f:
-    readme = f.write(readme)
+    f.write(readme)
 print("README.md synced successfully!")
