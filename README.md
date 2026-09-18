@@ -74,7 +74,7 @@ CareerTracker is fully PWA-enabled with adaptive minimalist brand icons:
 | **MDI Gurgaon** | Tier 1.5 Established | ₹26.0 L | ₹38,310 / mo | ₹0 (Study) | ₹1.10 L / mo | ₹3.10 L / mo | ₹9.27 L / mo | **₹8.80 Crores** |
 | **IIFT Delhi** | Tier 1.5 Established | ₹23.0 L | ₹35,117 / mo | ₹0 (Study) | ₹1.13 L / mo | ₹3.10 L / mo | ₹9.27 L / mo | **₹8.83 Crores** |
 | **SIBM Pune** | Tier 1.5 Private | ₹26.0 L | ₹38,310 / mo | ₹0 (Study) | ₹1.01 L / mo | ₹2.84 L / mo | ₹8.26 L / mo | **₹7.96 Crores** |
-| **SRCC Grad** | Direct Undergrad | **₹1.2 L** | **₹0 / mo** | **₹0.86 L / mo** | **₹1.10 L / mo** | **₹2.67 L / mo** | **₹6.04 L / mo** | **₹7.30 Crores** |
+| **SRCC Decent Placement** | Direct Undergrad | **₹1.2 L** | **₹0 / mo** | **₹0.79 L / mo** | **₹1.18 L / mo** | **₹2.78 L / mo** | **₹5.37 L / mo** | **₹6.48 Crores** |
 | **NMIMS Mumbai** | Tier 1.5 High-Fee | ₹26.0 L | ₹40,223 / mo | ₹0 (Study) | ₹0.90 L / mo | ₹2.60 L / mo | ₹7.40 L / mo | **₹7.20 Crores** |
 | **IIM Udaipur** | Top New IIM | ₹22.0 L | ₹35,117 / mo | ₹0 (Study) | ₹0.80 L / mo | ₹2.35 L / mo | ₹6.87 L / mo | **₹6.60 Crores** |
 | **IIM Trichy** | Top New IIM | ₹21.0 L | ₹33,521 / mo | ₹0 (Study) | ₹0.79 L / mo | ₹2.29 L / mo | ₹6.70 L / mo | **₹6.46 Crores** |
@@ -101,7 +101,7 @@ CareerTracker is fully PWA-enabled with adaptive minimalist brand icons:
 With program fees under ₹6 Lakhs, graduates take on zero or nominal loans. In Years 3 to 9, an FMS graduate takes home **₹1.76 Lakhs/month**, while an IIM Ahmedabad graduate takes home **₹1.40 Lakhs/month** (due to IIM-A's ₹47,509/mo EMI). FMS alumni lead all 2-year MBAs in accumulated net cash until Year 8 of their careers.
 
 ### 2. The SRCC Undergrad Paradox (Beating New & Baby IIMs)
-An SRCC graduate entering corporate roles immediately at Year 1 accumulates **₹7.30 Crores** over 20 years. This **surpasses New IIMs** (IIM Udaipur ₹6.60 Cr, IIM Trichy ₹6.46 Cr) and **beats Baby IIMs** (IIM Amritsar ₹5.67 Cr) because the graduate incurs ₹0 in tuition loans and avoids 2 years of lost earnings opportunity cost.
+An SRCC graduate entering corporate roles immediately at Year 1 accumulates **₹6.48 Crores** over 20 years. This **surpasses New IIMs** (IIM Udaipur ₹6.60 Cr, IIM Trichy ₹6.46 Cr) and **beats Baby IIMs** (IIM Amritsar ₹5.67 Cr) because the graduate incurs ₹0 in tuition loans and avoids 2 years of lost earnings opportunity cost.
 
 ### 3. The Baby IIM Squeeze (IIM Amritsar)
 Taking a ₹16.0 Lakhs loan against a ₹16.5 LPA starting CTC creates a heavy **₹25,540/month EMI burden**, suppressing Year 3 take-home to **₹77,000/month**. Over 20 years, it finishes at **₹5.67 Crores**, illustrating why Tier-2/Baby IIMs require careful ROI scrutiny.

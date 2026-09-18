@@ -37,7 +37,7 @@ TRACKS_CONFIG = [
     {"id": "iimt", "name": "IIM Trichy", "short": "IIM-T", "cluster": "Tier 1.5 & New IIMs", "cluster_id": "c5", "color": "#ef4444", "fee": 21.0, "loan": 21.0, "rate": 8.75, "dur": 2, "start_ctc": 19.0, "g1": 0.162, "g2": 0.118, "g3": 0.076},
 
     # Undergrad Direct (No MBA)
-    {"id": "srcc", "name": "SRCC Grad (Pure UG / No MBA)", "short": "SRCC (Pure UG)", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 12.0, "g1": 0.180, "g2": 0.118, "g3": 0.068, "ceiling_role": "Director / Principal (GCC / Tech Ops)", "ceiling_ctc": "₹65L - ₹85L (₹50L-₹65L fixed cash)", "ceiling_notes": "Starts in top capability hubs (BCN/D.E. Shaw); hits ceiling at Director level in GCCs without MBA/CA partner eligibility."},
+    {"id": "srcc", "name": "SRCC Decent Placement (Pure UG)", "short": "SRCC Decent Placement", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 14.4, "start_cash": 9.9, "benefits": 4.5, "g1": 0.180, "g2": 0.118, "g3": 0.068, "ceiling_role": "Director / Principal (Advisory / GCC)", "ceiling_ctc": "₹75L - ₹1.05 Cr (₹65L-₹85L fixed cash)", "ceiling_notes": "Calibrated to verified ₹14.4L CTC offer (₹9.0L fixed + ₹90k bonus + ₹4.5L benefits). Progression to Director in financial advisory / capability hubs caps without MBA/CA partner eligibility."},
     {"id": "venky", "name": "Venky / Deloitte UG (No MBA)", "short": "Deloitte / Venky", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#eab308", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 6.0, "g1": 0.175, "g2": 0.132, "g3": 0.088, "ceiling_role": "Senior Manager / Associate Director", "ceiling_ctc": "₹40L - ₹58L (₹32L-₹45L fixed cash)", "ceiling_notes": "Partner track in Big 4 requires CA/CPA or Tier-1 MBA; transitions to Delivery Lead / Senior PMO managing onshore teams."},
 
     # Baby IIMs (Gen 3 Benchmark)
@@ -116,9 +116,16 @@ def simulate_track(cfg):
         work_years += 1
         gross_ctc[y] = round(current_ctc, 2)
         
-        # Real liquid cash factor (accounting for non-cash retiral, variable pool)
-        cash_ratio = 0.88 if current_ctc < 40 else (0.82 if current_ctc < 100 else 0.78)
-        taxable_cash = current_ctc * cash_ratio
+        # Real liquid cash factor (accounting for non-cash benefits, retiral, variable pool)
+        if work_years == 1 and "start_cash" in cfg:
+            taxable_cash = cfg["start_cash"]
+        elif "start_cash" in cfg:
+            benefits = cfg.get("benefits", 4.5) * (1 + 0.02 * (work_years - 1))
+            taxable_cash = max(current_ctc * 0.78, current_ctc - benefits)
+        else:
+            cash_ratio = 0.88 if current_ctc < 40 else (0.82 if current_ctc < 100 else 0.78)
+            taxable_cash = current_ctc * cash_ratio
+
         tax = calc_new_regime_tax(taxable_cash)
         post_tax_cash = taxable_cash - tax
         
