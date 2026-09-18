@@ -37,7 +37,29 @@ TRACKS_CONFIG = [
     {"id": "iimt", "name": "IIM Trichy", "short": "IIM-T", "cluster": "Tier 1.5 & New IIMs", "cluster_id": "c5", "color": "#ef4444", "fee": 21.0, "loan": 21.0, "rate": 8.75, "dur": 2, "start_ctc": 19.0, "g1": 0.162, "g2": 0.118, "g3": 0.076},
 
     # Undergrad Direct (No MBA)
-    {"id": "srcc", "name": "SRCC Decent Placement (Pure UG)", "short": "SRCC Decent Placement", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 14.4, "start_cash": 9.9, "benefits": 4.5, "g1": 0.180, "g2": 0.118, "g3": 0.068, "ceiling_role": "Director / Principal (Advisory / GCC)", "ceiling_ctc": "₹75L - ₹1.05 Cr (₹65L-₹85L fixed cash)", "ceiling_notes": "Calibrated to verified ₹14.4L CTC offer (₹9.0L fixed + ₹90k bonus + ₹4.5L benefits). Progression to Director in financial advisory / capability hubs caps without MBA/CA partner eligibility."},
+    {"id": "srcc", "name": "SRCC Decent Placement (Pure UG)", "short": "SRCC Decent Placement", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#c084fc", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 14.4, "start_cash": 9.9, "benefits": 4.5,
+     "hike_schedule": [
+         0.10,   # Y2: 10% annual merit (Analyst Y2)
+         0.20,   # Y3: 20% promotion to Senior Analyst (Month 24)
+         0.10,   # Y4: 10% annual merit (Sr Analyst Y2)
+         0.10,   # Y5: 10% annual merit (Sr Analyst Y3)
+         0.20,   # Y6: 20% promotion to Associate / Lead (Month 60)
+         0.09,   # Y7: 9% annual merit
+         0.09,   # Y8: 9% annual merit
+         0.18,   # Y9: 18% promotion to Manager (Month 96)
+         0.08,   # Y10: 8% annual merit
+         0.08,   # Y11: 8% annual merit
+         0.16,   # Y12: 16% promotion to Senior Manager (Month 132)
+         0.07,   # Y13: 7% annual merit
+         0.07,   # Y14: 7% annual merit
+         0.07,   # Y15: 7% annual merit
+         0.15,   # Y16: 15% promotion to Director / Principal (Month 180)
+         0.055,  # Y17: 5.5% terminal Director increment
+         0.055,  # Y18: 5.5% terminal Director increment
+         0.055,  # Y19: 5.5% terminal Director increment
+         0.055   # Y20: 5.5% terminal Director increment
+     ],
+     "g1": 0.149, "g2": 0.108, "g3": 0.058, "ceiling_role": "Director / Principal (Advisory / GCC)", "ceiling_ctc": "₹75L - ₹95L (₹65L-₹80L fixed cash)", "ceiling_notes": "Calibrated to verified ₹14.4L CTC offer. Uses Path B organic progression (10% merit + 18-20% standard promotion bumps) within the same firm without assuming lateral switches. Caps at Director level without MBA/partner equity."},
     {"id": "venky", "name": "Venky / Deloitte UG (No MBA)", "short": "Deloitte / Venky", "cluster": "Undergrad Direct (No MBA)", "cluster_id": "ug", "color": "#eab308", "fee": 1.2, "loan": 0.0, "rate": 0.0, "dur": 0, "start_ctc": 6.0, "g1": 0.175, "g2": 0.132, "g3": 0.088, "ceiling_role": "Senior Manager / Associate Director", "ceiling_ctc": "₹40L - ₹58L (₹32L-₹45L fixed cash)", "ceiling_notes": "Partner track in Big 4 requires CA/CPA or Tier-1 MBA; transitions to Delivery Lead / Senior PMO managing onshore teams."},
 
     # Baby IIMs (Gen 3 Benchmark)
@@ -136,13 +158,16 @@ def simulate_track(cfg):
         if work_years == 0:
             current_ctc = start_ctc
         else:
-            # Multi-phase S-curve growth
-            if work_years <= 4:
-                rate = g1
-            elif work_years <= 10:
-                rate = g2
+            if "hike_schedule" in cfg and (work_years - 1) < len(cfg["hike_schedule"]):
+                rate = cfg["hike_schedule"][work_years - 1]
             else:
-                rate = g3
+                # Multi-phase S-curve growth
+                if work_years <= 4:
+                    rate = g1
+                elif work_years <= 10:
+                    rate = g2
+                else:
+                    rate = g3
             current_ctc = current_ctc * (1 + rate)
         
         work_years += 1
